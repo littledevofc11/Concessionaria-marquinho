@@ -37,16 +37,33 @@ export default class User extends carro {
 
 
     comprarCarro(saldo, precoCarro, carro){
-        if(saldo > precoCarro){
-            let novoSaldo = saldo - precoCarro
-            this.veiculos.push(carro)
-            return console.log("saldo novo: " + novoSaldo)
+        if(this.#veiculos.includes(carro)){
+            console.log("Você já tem esse veículo")
         }else{
-            return console.log("saldo insuficiente")
+            if(saldo > precoCarro){
+                let novoSaldo = saldo - precoCarro
+                this.veiculos.push(carro)
+                return console.log("saldo novo: " + novoSaldo)
+            }else{
+                return console.log("saldo insuficiente")
+            }
         }
+
         
     }
     venderCarro(saldo, precoCarro, carro){
-        //se possuir o carro, vender
+        if(this.#veiculos.includes(carro)){
+            let indice = this.#veiculos.indexOf(carro);
+        
+            if (indice !== -1) {
+              this.#veiculos.splice(indice, 1);
+              saldo = saldo + precoCarro
+            } else {
+              console.log(`O veiculo '${carro}' não foi encontrado na conta.`);
+            }
+        }else{
+            console.log("Você não possui esse veículo para vendê-lo")
+        }
+
     }
 }
