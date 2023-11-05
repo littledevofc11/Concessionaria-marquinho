@@ -1,28 +1,39 @@
 import User from "./User.js"
 
-export default class carro {
+
+
+export default class carro extends User{
+    #estoque
     #carro
     #marca
-    #anoLancamento
+    #anoProducao
     #diaDeHoje
     #precoCarro
-    constructor(carro, marca, anoLancamento, diaDeHoje, precoCarro){
-        //super()
+    
+    constructor(estoque, carro, marca, anoProducao, diaDeHoje, precoCarro){
+        const date = new Date()
+        super()
+        this.#estoque = estoque
         this.#carro = carro
         this.#marca = marca
-        this.#anoLancamento = anoLancamento
+        this.#anoProducao = anoProducao
         this.#diaDeHoje = diaDeHoje
+        this.#diaDeHoje = date.getFullYear()
         this.#precoCarro = precoCarro
     }
 
+    get estoque(){
+        return this.#estoque
+    }
+    
     get carro() {
         return this.#carro
     }
     get marca() {
         return this.#marca
     }
-    get anoLancamento() {
-        return this.#anoLancamento
+    get anoProducao() {
+        return this.#anoProducao
     }
     get diaDeHoje() {
         return this.#diaDeHoje
